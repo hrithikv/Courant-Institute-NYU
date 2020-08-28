@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "818527613615",
+    "firebase_url": "https://academico-f0998.firebaseio.com",
+    "project_id": "academico-f0998",
+    "storage_bucket": "academico-f0998.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818527613615:android:70b6885deb0e327b",
+        "android_client_info": {
+          "package_name": "com.uii.academico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818527613615-rvm2dohiu65j8jl2e905b3rcgt0omsek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxZBiqlnqH-37EvpixxgkUptFfZrK2aKU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
