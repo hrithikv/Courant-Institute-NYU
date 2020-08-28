@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.BuatDataActivity">
+
+    <ImageView
+        android:id="@+id/BG_buatJadwal"
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/warnaCoklat"
+                    android:orientation="horizontal"
+                    android:paddingRight="20dp">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:paddingLeft="20dp"
+                        android:text="SEMESTER"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/isi_Semester"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="ketik di sini ..."
+                        android:inputType="number"
+                        android:textColor="@color/warnaKuningTua"
+                        android:textColorHint="@color/warnaKuningTua"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/warnaKuning"
+                    android:orientation="horizontal"
+                    android:paddingRight="20dp">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:paddingLeft="20dp"
+                        android:text="IP"
+                        android:textColor="@color/warnaCoklat"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/isi_IP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="ketik di sini ..."
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/warnaCoklat"
+                        android:textColorHint="@color/warnaCoklat"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/warnaKrem"
+                    android:orientation="horizontal"
+                    android:paddingRight="20dp">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:paddingLeft="20dp"
+                        android:text="SKS"
+                        android:textColor="@color/warnaCoklat"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/isi_SKS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="ketik di sini ..."
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/warnaCoklat"
+                        android:textColorHint="@color/warnaCoklat"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/warnaKuning"
+                    android:orientation="horizontal"
+                    android:paddingRight="20dp">
+
+                    <TextView
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:paddingLeft="20dp"
+                        android:text="KP"
+                        android:textColor="@color/warnaCoklat"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup_KP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/KP_sudah"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="Sudah"
+                            android:textColorHint="@color/warnaCoklat" />
+
+                        <RadioButton
+                            android:id="@+id/KP_belum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="Belum"
+                            android:textColorHint="@color/warnaCoklat" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/warnaKrem"
+                    android:orientation="horizontal"
+                    android:paddingRight="20dp">
+
+                    <TextView
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:paddingLeft="20dp"
+                        android:text="TA"
+                        android:textColor="@color/warnaCoklat"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup_TA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/TA_sudah"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="Sudah"
+                            android:textColorHint="@color/warnaCoklat" />
+
+                        <RadioButton
+                            android:id="@+id/TA_belum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="Belum"
+                            android:textColorHint="@color/warnaCoklat" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/warnaKuning"
+                android:orientation="horizontal"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:paddingLeft="20dp"
+                    android:text="Mengambil     Cuti"
+                    android:textColor="@color/warnaCoklat"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_Cuti"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/cuti_ya"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="23dp"
+                        android:hint="Ya"
+                        android:textColorHint="@color/warnaCoklat" />
+
+                    <RadioButton
+                        android:id="@+id/cuti_tidak"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Tidak"
+                        android:textColorHint="@color/warnaCoklat" />
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/warnaKrem"
+                android:orientation="horizontal"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:paddingLeft="20dp"
+                    android:text="BTAQ"
+                    android:textColor="@color/warnaCoklat"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_BTAQ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/btaq_lulus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="6dp"
+                        android:hint="Lulus"
+                        android:textColorHint="@color/warnaCoklat" />
+
+                    <RadioButton
+                        android:id="@+id/btaq_belum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Belum"
+                        android:textColorHint="@color/warnaCoklat" />
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/warnaKuning"
+                android:orientation="horizontal"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:paddingLeft="20dp"
+                    android:text="KKN"
+                    android:textColor="@color/warnaCoklat"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_KKN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/kkn_sudah"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Sudah"
+                        android:textColorHint="@color/warnaCoklat" />
+
+                    <RadioButton
+                        android:id="@+id/kkn_belum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Belum"
+                        android:textColorHint="@color/warnaCoklat" />
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/warnaKrem"
+                android:orientation="horizontal"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:paddingLeft="20dp"
+                    android:text="CEPT"
+                    android:textColor="@color/warnaCoklat"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_CEPT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/cept_lulus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="6dp"
+                        android:hint="Lulus"
+                        android:textColorHint="@color/warnaCoklat" />
+
+                    <RadioButton
+                        android:id="@+id/cept_belum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Belum"
+                        android:textColorHint="@color/warnaCoklat" />
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/warnaBiruLangit"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/warnaBiru"
+                    android:padding="10dp"
+                    android:text="Kesibukan Selain Kuliah"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/isi_Kegiatan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="ketik di sini ..."
+                    android:inputType="textMultiLine"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/BT_simpan_DataAkademik"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="Simpan"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
+            <ProgressBar
+                android:id="@+id/PB_simpan_DataAkademik"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="20dp" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</RelativeLayout>
