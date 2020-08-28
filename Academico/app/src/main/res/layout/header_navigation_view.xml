@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="180dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:src="@drawable/navdrawhead"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/warnaBiruTua"/>
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/foto_profil"
+        android:layout_marginBottom="10dp"/>
+
+    <ProgressBar
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:padding="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/PB_progress_profil"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="NAMAKU"
+        android:layout_below="@+id/foto_profil"
+        android:id="@+id/namaprofil"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NIM xx523xxx"
+        android:id="@+id/nomor"
+        android:layout_below="@+id/namaprofil"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFFFFF" />
+
+
+</RelativeLayout>
