@@ -40,9 +40,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Fakhrus on 4/10/16.
- */
 public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private AdapterInformasi adapter;
@@ -77,12 +74,10 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
 
         if (status.equals("mahasiswa") || status.equals("dosen")){
 
-            // Tidak dapat mengunggah informasi
             fab.setVisibility(View.GONE);
 
         }else {
 
-            // Float Button di klik utk ke Post Informasi
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -93,8 +88,6 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
 
         }
 
-
-        // untuk petunjuk info
         petunjukInfo = (LinearLayout) viewInformasi.findViewById(R.id.petunjuk_info);
 
         swipeRefreshPetunjuk = (SwipeRefreshLayout) viewInformasi.findViewById(R.id.swipe_refresh_petunjuk_Info);
@@ -108,7 +101,6 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
             }
         });
 
-        // untuk refresh informasi
         swipeRefreshLayout = (SwipeRefreshLayout) viewInformasi.findViewById(R.id.swipe_refresh_info);
         swipeRefreshLayout.setOnRefreshListener(this);
 
@@ -120,24 +112,16 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
             }
         });
 
-        //panggil listview
         ListView listInformasi = (ListView) viewInformasi.findViewById(R.id.list_informasi);
 
-        //hapus border listview
         listInformasi.setDivider(null);
 
-
-        //inisialisasi adapter dan set adapter
         adapter = new AdapterInformasi(getActivity(), itemInformasi);
         listInformasi.setAdapter(adapter);
 
-        //fungsi klik masing2 item
         listInformasi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                //lakukan sesuatu
-//                Toast.makeText(getContext(), "ID "+ itemInformasi.get(position).getIdInfo()+" Topik : " + itemInformasi.get(position).getTopik(), Toast.LENGTH_SHORT).show();
 
                 Intent keDetailInformasi = new Intent(getContext(), DetailInformasiActivity.class);
                 keDetailInformasi.putExtra("urlGambarInfo", itemInformasi.get(position).getGambarInformasi());
@@ -159,8 +143,6 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
         return viewInformasi;
     }
 
-
-    // Refresh Swipe
     @Override
     public void onRefresh() {
         RequestDataInformasi(id_jurusan);
@@ -180,14 +162,12 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
 
                             JSONArray jsonArray = new JSONArray(response);
 
-                            // Agar data tidak terduplikasi
                             itemInformasi.clear();
 
                             for (int i = 0; i < jsonArray.length(); i++) {
 
                                 JSONObject obj = jsonArray.getJSONObject(i);
 
-                                // Membuat objek setiap kontak
                                 InformasiObject informasi = new InformasiObject();
 
                                 informasi.setIdInfo(obj.getString("id_info"));
@@ -196,10 +176,7 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
                                 informasi.setDeskripsi(obj.getString("deskripsi"));
                                 informasi.setGambarInformasi(obj.getString("gambar"));
 
-                                //menambahkan dokumen kedalam array dokumen
                                 itemInformasi.add(informasi);
-
-
                             }
 
                         } catch (JSONException e) {
@@ -207,13 +184,10 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
                             Toast.makeText(getActivity(), "Terjadi Kesalahan Input: ", Toast.LENGTH_LONG).show();
                         }
 
-                        // lapor ke adapter jika respon selesai (ada perubahan)
                         adapter.notifyDataSetChanged();
 
-                        // tutup refresh info
                         swipeRefreshLayout.setRefreshing(false);
 
-                        // hapus petunjuk info
                         swipeRefreshPetunjuk.setRefreshing(false);
                         swipeRefreshPetunjuk.setVisibility(View.GONE);
                         petunjukInfo.setVisibility(View.GONE);
@@ -223,10 +197,8 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
                         Toast.makeText(getActivity(), "Tidak Terhubung \n Periksa Koneksi Internet Anda", Toast.LENGTH_SHORT).show();
 
-                        // tutup refresh
                         swipeRefreshLayout.setRefreshing(false);
                         swipeRefreshPetunjuk.setRefreshing(false);
                     }
@@ -236,7 +208,6 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
-                // the POST parameters:
                 params.put("id_jurusan", id_jurusan);
 
                 return params;
@@ -247,7 +218,6 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
     }
 
 
-    // ================================== HAPUS INFORMASI (admin jurusan) ======================================
 
     private void HapusInformasi(final int position) {
 
@@ -263,7 +233,6 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
                 progressHapus.setMessage("Tunggu Sebentar ...");
                 progressHapus.show();
 
-                // input id informasi ke method PostHapusInfo
                 PostHapusInfo(itemInformasi.get(position).getIdInfo());
 
                 dialog.dismiss();
@@ -271,7 +240,6 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
         });
         builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                //TODO
                 dialog.dismiss();
             }
         });
@@ -280,9 +248,6 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
 
 
     }
-
-
-    // ===================================== PROSES HAPUS INFORMASI ===================================
 
     public void PostHapusInfo(final String id_informasi) {
 
@@ -298,10 +263,8 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
                             JSONObject obj = new JSONObject(response);
                             String konfirmasi = obj.getString("hapusInfo");
 
-                            // hilangkan loading progress konfirmasi
                             progressHapus.dismiss();
 
-                            // reload jadwal bimbingan
                             swipeRefreshLayout.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -328,7 +291,6 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
 
                         progressHapus.dismiss();
                         Toast.makeText(getContext(), "Tidak Terhubung \n Periksa Koneksi Internet Anda", Toast.LENGTH_SHORT).show();
@@ -349,6 +311,4 @@ public class FragmentInformasi extends Fragment implements SwipeRefreshLayout.On
 
         MySingleton.getInstance(getContext()).addToRequestQueue(postRequest);
     }
-
-
 }
