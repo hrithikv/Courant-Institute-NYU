@@ -42,9 +42,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Fakhrus on 4/10/16.
- */
 public class FragmentKontak extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     AdapterKontak adapter;
@@ -81,8 +78,6 @@ public class FragmentKontak extends Fragment implements SwipeRefreshLayout.OnRef
 
         View viewKontak = inflater.inflate(R.layout.fragment_kontak, container, false);
 
-        // Petunjuk kontak
-
         swipeRefreshPetunjuk = (SwipeRefreshLayout) viewKontak.findViewById(R.id.swipe_refresh_petunjuk_kontak);
         swipeRefreshPetunjuk.setOnRefreshListener(this);
 
@@ -96,9 +91,6 @@ public class FragmentKontak extends Fragment implements SwipeRefreshLayout.OnRef
 
         ll_petunjuk_kontak = (LinearLayout) viewKontak.findViewById(R.id.petunjuk_kontak);
 
-
-        // Refresh Kontak
-
         swipeRefreshLayout = (SwipeRefreshLayout) viewKontak.findViewById(R.id.swipe_refresh_kontak);
         swipeRefreshLayout.setOnRefreshListener(this);
 
@@ -110,13 +102,10 @@ public class FragmentKontak extends Fragment implements SwipeRefreshLayout.OnRef
             }
         });
 
-        //panggil listview
         ListView listKontak = (ListView) viewKontak.findViewById(R.id.list_kontak);
 
-        //hapus border listview
         listKontak.setDivider(null);
 
-        //inisialisasi adapter dan set adapter
         adapter = new AdapterKontak(getContext(), itemKontak);
         listKontak.setAdapter(adapter);
 
@@ -165,10 +154,8 @@ public class FragmentKontak extends Fragment implements SwipeRefreshLayout.OnRef
                             Toast.makeText(getContext(), "Terjadi Kesalahan Input: ", Toast.LENGTH_LONG).show();
                         }
 
-                        //lapor ke adapter jika respon selesai (ada perubahan)
                         adapter.notifyDataSetChanged();
 
-                        // tutup refresh
                         swipeRefreshLayout.setRefreshing(false);
 
                         swipeRefreshPetunjuk.setRefreshing(false);
@@ -180,10 +167,8 @@ public class FragmentKontak extends Fragment implements SwipeRefreshLayout.OnRef
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
                         Toast.makeText(getContext(), "Tidak Terhubung \n Periksa Koneksi Internet Anda", Toast.LENGTH_SHORT).show();
 
-                        // tutup refresh
                         swipeRefreshLayout.setRefreshing(false);
                         swipeRefreshPetunjuk.setRefreshing(false);
                     }
@@ -214,7 +199,6 @@ public class FragmentKontak extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
 
-//    ========================  BUAT SEARCH VIEW PER FRAGMENT ============================
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
