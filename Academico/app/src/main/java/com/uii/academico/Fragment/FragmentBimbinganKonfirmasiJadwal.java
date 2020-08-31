@@ -42,11 +42,8 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
     private AdapterDaftarBimbingan adapter;
     private List<DaftarBimbinganObject> itemDaftarBimbingan = new ArrayList<>();
 
-//    TextView Nama, NIM;
-
     String status, idSaya;
-//    String namaBimbingan, idBimbingan, urlfotoMhs;
-//    NetworkImageView fotoMhs;
+
 
     SwipeRefreshLayout swipeRefreshLayout;
     ProgressDialog progressSubmit, progressHapus;
@@ -75,38 +72,25 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
                 RequestAgendaBimbingan(idSaya, status);
             }
         });
-
-
-
-
-        // Panggil listview riwayat bimbingan
         ListView listRiwayat = (ListView) viewKonfirmasiJadwal.findViewById(R.id.daftar_konfirmasi);
 
-        // adapter riwayat (konteks, data)
         adapter = new AdapterDaftarBimbingan(getContext(), itemDaftarBimbingan);
         listRiwayat.setAdapter(adapter);
 
-        //hapus border listview
         listRiwayat.setDivider(null);
 
-        // jika list item di klik
         listRiwayat.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Setiap kali list di klik panggil method berikut :
-
-                // ambil id mhs sbg id bimbingan
-//                idBimbingan = itemDaftarBimbingan.get(position).getId_mhs();
                 SetHasilBimbingan(position);
             }
         });
 
-        // jika list ditekan lama
         listRiwayat.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if (status.equals("dosen")){    // jika dosen, dapat hapus riwayat
+                if (status.equals("dosen")){    
                     HapusRiwayat(position);
                     return true;
                 }
@@ -133,14 +117,12 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
 
                             JSONArray jsonArray = new JSONArray(response);
 
-                            // Agar data tidak terduplikasi
                             itemDaftarBimbingan.clear();
 
                             for (int i = 0; i < jsonArray.length(); i++) {
 
                                 JSONObject obj = jsonArray.getJSONObject(i);
 
-                                // Membuat objek setiap kontak
                                 DaftarBimbinganObject daftarBimbinganObject = new DaftarBimbinganObject();
 
                                 daftarBimbinganObject.setId_agenda(obj.getString("id_jadwal"));
@@ -152,10 +134,6 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
                                 daftarBimbinganObject.setNama_mhs(obj.getString("nama_mhs"));
                                 daftarBimbinganObject.setId_mhs(obj.getString("nim_mhs"));
                                 daftarBimbinganObject.setProfil_mhs(obj.getString("foto_mhs"));
-
-
-
-                                //menambahkan dokumen kedalam array dokumen
                                 itemDaftarBimbingan.add(daftarBimbinganObject);
 
                             }
@@ -164,11 +142,8 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
                             e.printStackTrace();
                             Toast.makeText(getContext(), "Terjadi Kesalahan Input", Toast.LENGTH_SHORT).show();
                         }
-
-                        //lapor ke adapter jika respon selesai (ada perubahan)
                         adapter.notifyDataSetChanged();
 
-                        // tutup refresh
                         swipeRefreshLayout.setRefreshing(false);
 
                     }
@@ -176,10 +151,8 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
                         Toast.makeText(getContext(), "Tidak Terhubung \n Periksa Koneksi Internet Anda", Toast.LENGTH_SHORT).show();
 
-                        // tutup refresh
                         swipeRefreshLayout.setRefreshing(false);
                     }
                 }
@@ -188,7 +161,6 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
-                // the POST parameters:
                 params.put("id_user", idSaya);
                 params.put("status", status);
 
@@ -200,8 +172,6 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
     }
 
 
-
-    // ====================================== SET HASIL BIMBINGAN BAGI DOSEN ===================================
 
     public void SetHasilBimbingan(final int position) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
@@ -245,10 +215,6 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
         alertDialog.show();
     }
 
-
-
-    // ===================================== KIRIM KONFIRMASI BIMBINGAN BAGI DOSEN ===================================
-
     public void PostKonfirmasiBimbingan(String idDosen, final String id_riwayat, final String indikator_mhs, final String indikator_dosen, final String hasil_bimbingan) {
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, Utils.KONFIRMASIHASILBIMBINGAN,
@@ -264,10 +230,8 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
                             JSONObject obj = new JSONObject(response);
                             String konfirmasi = obj.getString("konfirmasi");
 
-                            // hilangkan loading progress konfirmasi
                             progressSubmit.dismiss();
 
-                            // reload jadwal bimbingan
                             swipeRefreshLayout.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -283,11 +247,9 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getContext(), "Terjadi Kesalahan Input", Toast.LENGTH_LONG).show();
-                            // hilangkan loading progress konfirmasi
                             progressSubmit.dismiss();
                         }
 
-                        //lapor ke adapter jika respon selesai (ada perubahan)
                         adapter.notifyDataSetChanged();
 
 
@@ -296,7 +258,6 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
 
                         progressSubmit.dismiss();
                         Toast.makeText(getContext(), "Tidak Terhubung \n Periksa Koneksi Internet Anda", Toast.LENGTH_SHORT).show();
@@ -308,7 +269,6 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
-                // the POST parameters:
                 params.put("id_riwayat", id_riwayat);
                 params.put("konfirm_mhs", indikator_mhs);
                 params.put("konfirm_dosen", indikator_dosen);
@@ -320,12 +280,6 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
 
         MySingleton.getInstance(getContext()).addToRequestQueue(postRequest);
     }
-
-
-
-
-
-    // ================================== HAPUS RIWAYAT BIMBINGAN (Dosen) ======================================
 
     private void HapusRiwayat(final int position) {
 
@@ -341,7 +295,6 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
                 progressHapus.setMessage("Tunggu Sebentar ...");
                 progressHapus.show();
 
-                // input id data akademik ke method PostValidasi
                 PostHapusRiwayat(itemDaftarBimbingan.get(position).getId_agenda());
 
                 dialog.dismiss();
@@ -349,7 +302,6 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
         });
         builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                //TODO
                 dialog.dismiss();
             }
         });
@@ -358,9 +310,6 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
 
 
     }
-
-
-    // ===================================== PROSES HAPUS RIWAYAT BIMBINGAN ===================================
 
     public void PostHapusRiwayat(final String id_riwayatBimbingan) {
 
@@ -376,10 +325,8 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
                             JSONObject obj = new JSONObject(response);
                             String konfirmasi = obj.getString("hapusRiwayatBimbingan");
 
-                            // hilangkan loading progress konfirmasi
                             progressHapus.dismiss();
 
-                            // reload jadwal bimbingan
                             swipeRefreshLayout.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -397,7 +344,6 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
                             Toast.makeText(getContext(), "Terjadi Kesalahan Input", Toast.LENGTH_SHORT).show();
                         }
 
-                        //lapor ke adapter jika respon selesai (ada perubahan)
                         adapter.notifyDataSetChanged();
 
 
@@ -418,7 +364,6 @@ public class FragmentBimbinganKonfirmasiJadwal extends Fragment implements Swipe
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
-                // the POST parameters:
                 params.put("id_riwayatBimbingan", id_riwayatBimbingan);
 
                 return params;
